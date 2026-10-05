@@ -1,0 +1,15 @@
+name: Keep 119 Years Bot Awake
+
+on:
+  schedule:
+    - cron: '*/12 * * * *'
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Ping the bot
+        run: |
+          curl -fsS https://telegram-119-years.onrender.com/health
