@@ -1,0 +1,14 @@
+name: Keep 119 Years Bot Awake
+
+on:
+  schedule:
+    - cron: '*/12 * * * *'
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - name: Ping 119 Years health endpoint
+        run: curl -fsS --connect-timeout 20 --max-time 90 --retry 5 --retry-all-errors --retry-delay 10 https://telegram-119-years-ss2d.onrender.com/health
