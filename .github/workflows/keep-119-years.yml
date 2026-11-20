@@ -1,14 +1,26 @@
-name: Keep 119 Years Render Alive
+name: Keep Render Services Alive (119 Years + 12 Weeks)
 
 on:
   schedule:
-    - cron: '*/5 * * * *'
+    - cron: '*/12 * * * *'
   workflow_dispatch:
 
 jobs:
-  ping:
+  ping-119-years:
     runs-on: ubuntu-latest
-    timeout-minutes: 4
+    timeout-minutes: 10
     steps:
       - name: Ping 119 Years Render
-        run: curl -fsS --connect-timeout 20 --max-time 90 --retry 5 --retry-all-errors --retry-delay 10 https://telegram-119-years-ss2d.onrender.com
+        run: >-
+          curl -sS -o /dev/null -w 'HTTP %{http_code}\n'
+          --connect-timeout 20 --max-time 90 --retry 5 --retry-all-errors --retry-delay 10
+          https://telegram-119-years-qbd0.onrender.com
+  ping-84-days-api:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Ping 12 Weeks API health
+        run: >-
+          curl -sS -o /dev/null -w 'HTTP %{http_code}\n'
+          --connect-timeout 20 --max-time 90 --retry 5 --retry-all-errors --retry-delay 10
+          https://telegram-84-days-api-jok6.onrender.com/api/health
