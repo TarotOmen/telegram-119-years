@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Ping 119 Years Render
         run: >-
-          curl -sS -o /dev/null -w 'HTTP %{http_code}\n'
+          curl --fail -sS -o /dev/null -w 'HTTP %{http_code}\n'
           --connect-timeout 20 --max-time 90 --retry 5 --retry-all-errors --retry-delay 10
           https://telegram-119-years-qbd0.onrender.com
   ping-84-days-api:
@@ -21,6 +21,6 @@ jobs:
     steps:
       - name: Ping 12 Weeks API health
         run: >-
-          curl -sS -o /dev/null -w 'HTTP %{http_code}\n'
+          curl --fail -sS -o /dev/null -w 'HTTP %{http_code}\n'
           --connect-timeout 20 --max-time 90 --retry 5 --retry-all-errors --retry-delay 10
           https://telegram-84-days-api-jok6.onrender.com/api/health
